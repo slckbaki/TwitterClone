@@ -7,14 +7,19 @@
 
 import SwiftUI
 
-struct ChatBubbleView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct ChatBubbleView: Shape {
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: [.topLeft, .topRight, isFromCurrentUser ?  .bottomLeft: .bottomRight], cornerRadii: CGSize(width: 15, height: 15))
+        return Path(path.cgPath)
     }
+    
+    var isFromCurrentUser : Bool
+    
+    
 }
 
 struct ChatBubbleView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatBubbleView()
+        ChatBubbleView(isFromCurrentUser: false)
     }
 }

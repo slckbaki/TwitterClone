@@ -8,13 +8,36 @@
 import SwiftUI
 
 struct NewMessageView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+    
+    @State var searchText = ""
+    @Binding var show : Bool
+    @Binding var startChat : Bool
+        var body: some View {
+            ScrollView {
+                SearchBarView(textSearch: $searchText)
+                    .padding(.bottom, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                
+                VStack(alignment: .leading){
+                    ForEach(0..<5) { _ in
+                        HStack{
+                            Spacer()
+                        }
+                        Button(action: {
+                            self.show.toggle()
+                            self.startChat.toggle()
+                        }, label: {
+                            UserCellView()
+                        })
+                    }
+                }.padding(.leading, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+            }
+        }
+        
+
 }
 
 struct NewMessageView_Previews: PreviewProvider {
     static var previews: some View {
-        NewMessageView()
+        NewMessageView(show: .constant(false), startChat: .constant(false))
     }
 }

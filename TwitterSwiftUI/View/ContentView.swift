@@ -15,15 +15,19 @@ struct ContentView: View {
         
         NavigationView {
             TabView {
-                Text("Feed").tabItem {
+                FeedView()
+                    .tabItem {
                     Image(systemName: "house")
                     Text("Home")
                 }
-                Text("Search View").tabItem {
+                
+                SearchView()
+                    .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("Search")
-                }
-                Text("Messages").tabItem {
+                    }
+                ConversationsView()
+                    .tabItem {
                     Image(systemName: "envelope")
                     Text("Messages")
                 }
